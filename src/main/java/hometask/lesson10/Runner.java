@@ -24,7 +24,7 @@ public class Runner {
 
         director1.addEmployees(director2, director3);
 
-//        director1.printSubordinateEmpInfo();
+        director1.printSubordinateEmpInfo();
 
         System.out.println(employeeService.dfs(director1, "Alex", "Orlov"));
 

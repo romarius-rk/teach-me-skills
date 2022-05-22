@@ -10,9 +10,9 @@ import java.util.List;
 public class EmployeeService {
 
     private Employee founded = null;
+    private List<Employee> used = new ArrayList<>();
 
     public Employee dfs(Director director, String name, String lastName) {
-        List<Employee> used = new ArrayList<>();
         recursiveLookup(used, director, name, lastName);
         return founded;
     }
@@ -23,7 +23,8 @@ public class EmployeeService {
             if (employee.getName().equals(name) && employee.getLastName().equals(lastName)) {
                 founded = employee;
                 break;
-            } else if (employee.getEmpType() == EmployeeType.DIRECTOR && !used.contains(employee)) {
+            }
+            if (employee.getEmpType() == EmployeeType.DIRECTOR && !used.contains(employee)) {
                 recursiveLookup(used, (Director) employee, name, lastName);
             }
         }
