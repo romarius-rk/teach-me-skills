@@ -36,13 +36,13 @@ public class InputStorageService {
 
     private void checkingStorageSize(List<String> stringsStorage) {
         if (stringsStorage.size() >= 5) {
-            throw new StringStorageFullException(stringsStorage);
+            throw new StringStorageFullException();
         }
     }
 
     private void checkingStorageFill(List<String> stringsStorage) {
         if (stringsStorage.size() == 0){
-            throw new StorageMemoryEmptyException(stringsStorage);
+            throw new StorageMemoryEmptyException();
         }
     }
 }

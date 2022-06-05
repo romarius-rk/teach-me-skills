@@ -4,11 +4,8 @@ import java.util.List;
 
 public class StorageMemoryEmptyException extends RuntimeException {
 
-    private final List<String> list;
-
-    public StorageMemoryEmptyException(List<String> list) {
+    public StorageMemoryEmptyException() {
         super();
-        this.list = list;
     }
 
     @Override

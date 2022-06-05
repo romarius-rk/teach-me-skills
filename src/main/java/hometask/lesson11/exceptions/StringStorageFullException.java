@@ -4,11 +4,8 @@ import java.util.List;
 
 public class StringStorageFullException extends RuntimeException {
 
-    private final List<String> list;
-
-    public StringStorageFullException(List<String> list) {
+    public StringStorageFullException() {
         super();
-        this.list = list;
     }
 
     @Override

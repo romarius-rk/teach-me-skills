@@ -20,25 +20,19 @@ import hometask.lesson11.exceptions.StringStorageFullException;
 
 public class Runner {
     public static void main(String[] args) {
-
-        try {
-            Runner.serviceInputString();
-        } catch (StorageMemoryEmptyException exc) {
-            System.out.println(exc.getMessage());
-        } catch (StringStorageFullException exc) {
-            System.out.println(exc.getMessage());
-        }
-    }
-
-    public static void serviceInputString(){
         String str;
-        String temp;
+        String temp = "";
         ReadersFromCMD fromCMD = new ReadersFromCMD();
         InputStorageService service = new InputStorageService();
         do {
-            str = fromCMD.readStr("Enter some string.");
-            temp = service.serviceCore(str);
-            System.out.println(temp);
-        } while (temp != "program closed");
+            try {
+                str = fromCMD.readStr("Enter some string.");
+                temp = service.serviceCore(str);
+                System.out.println(temp);
+            } catch (StorageMemoryEmptyException | StringStorageFullException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (!temp.equals("program closed"));
     }
+
 }
