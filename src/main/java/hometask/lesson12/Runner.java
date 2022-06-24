@@ -34,9 +34,7 @@ public class Runner {
         User user1 = new User("Лис", "1", 1);
         User user2 = new User("Маленький принц", "1", 1);
 
-        List<User> actorsList = new ArrayList<>();
-        actorsList.add(user1);
-        actorsList.add(user2);
+        List<User> actorsList = List.of(user1, user2);
 
         FileOutputStream fileOutputStream = new FileOutputStream("D:\\Serialised\\save.ser");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -49,11 +47,11 @@ public class Runner {
         FileInputStream fileInputStream = new FileInputStream("D:\\Serialised\\save.ser");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-        User user3 = (User) objectInputStream.readObject();
-        User user4 = (User) objectInputStream.readObject();
+        user1 = (User) objectInputStream.readObject();
+        user2 = (User) objectInputStream.readObject();
 
-        System.out.println(user3);
-        System.out.println(user4);
+        System.out.println(user1);
+        System.out.println(user2);
 
         objectInputStream.close();
 
@@ -69,8 +67,6 @@ public class Runner {
         actorTwoReplicas.createNewFile();
 
         ReplicasSeparator separ = new ReplicasSeparator();
-        separ.separator(service.readReplicas(reader, actorsList),user1,actorOneReplicas);
-        separ.separator(service.readReplicas(reader, actorsList),user2,actorTwoReplicas);
-
+        separ.separateDialog(service.readReplicas(reader, actorsList));
     }
 }

@@ -8,18 +8,22 @@ import java.util.Map;
 
 public class ReplicasSeparator {
 
-    public void separator(Map<String, List<String>> actorMap, User actor, File file) throws IOException, RuntimeException {
-        List<String> replicasList = actorMap.get(actor.getName());
-        FileWriter writer = new FileWriter(file.getPath());
-        replicasList.forEach(replica -> {
-            try {
-                writer.write(replica + "\n");
+    public void separateDialog(Map<String, List<String>> actorMap) {
+        actorMap.forEach((key, value) -> {
+            File file = new File("D:\\teach-me-skills\\src\\main\\java\\hometask\\lesson12\\texts",
+                    key + ".txt");
+            try (FileWriter writer = new FileWriter(file.getPath())) {
+                value.forEach(line -> {
+                    try {
+                        writer.write(line + "\n");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+                writer.flush();
             } catch (IOException e) {
-                System.out.println("kekes");
                 throw new RuntimeException(e);
-
             }
         });
-        writer.flush();
     }
 }
